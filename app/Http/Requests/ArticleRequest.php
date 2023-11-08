@@ -11,7 +11,7 @@ class ArticleRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,7 @@ class ArticleRequest extends FormRequest
         return [
             'titre'=>'required', 
             'contenu'=>'required', 
-            'categorie_id'=>'exists:categories,id', 
+            'category_id'=>'required|exists:categories,id', 
             'date_debut'=>'required|date', 
             'date_expiration'=>'required|date',
         ];

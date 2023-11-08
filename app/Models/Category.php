@@ -9,19 +9,27 @@ class Category extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'parent_id'];
+    protected $fillable = ['name', 'category_id'];
 
     public function articles(){
         return $this->hasMany(Article::class);
     }
     
-    public function parent()
-    {
-        return $this->belongsTo(Category::class, 'parent_id');
-    }
 
     public function children()
     {
-        return $this->hasMany(Category::class, 'parent_id');
+        return $this->hasMany(Category::class);
+    }
+
+
+    public function getAllArticlesRecursive()
+    {
+        $articles = $this->articles;
+        //
+        foreach ($this->children as $child) {
+            $articles = $articles->merge($child->getAllArticlesRecursive());
+        }
+
+        return $articles;
     }
 }

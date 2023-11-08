@@ -67,7 +67,7 @@ class CategorySeeder extends Seeder
             if(!Category::whereName($key)->exists()){
                 Category::create([
                     'name'=>$key,
-                    'parent_id'=>null,
+                    'category_id'=>null,
                 ]);
             }
 
@@ -78,14 +78,14 @@ class CategorySeeder extends Seeder
                     if(!Category::whereName($keySubCat)->exists()){
                         Category::create([
                             'name'=>$keySubCat,
-                            'parent_id'=>Category::whereName($key)->first('id')->id,
+                            'category_id'=>Category::whereName($key)->first('id')->id,
                         ]);
                     }
 
                     foreach ($valSubCat as $subCat2) {
                         Category::create([
                             'name'=>$subCat2,
-                            'parent_id'=>Category::whereName($keySubCat)->first('id')->id,
+                            'category_id'=>Category::whereName($keySubCat)->first('id')->id,
                         ]);
                     }
                 }
@@ -94,7 +94,7 @@ class CategorySeeder extends Seeder
                 foreach ($categories[$key] as $subCat) {
                     Category::create([
                         'name'=>$subCat,
-                        'parent_id'=>Category::whereName($key)->first('id')->id,
+                        'category_id'=>Category::whereName($key)->first('id')->id,
                     ]);
                 }
             }

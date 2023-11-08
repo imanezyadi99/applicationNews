@@ -24,5 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('login',[AuthController::class, 'login']);
 
 Route::middleware('auth:sanctum')->group(function () {
-        Route::resource('/articles',ArticleController::class);
+    Route::resource('/articles', ArticleController::class);
+    Route::get('/articlesDESC', [ArticleController::class, 'filtredArticles']);
+    Route::get('/category/{id}/articles', [ArticleController::class, 'search']);
 });

@@ -12,7 +12,7 @@ class Article extends Model
     protected $fillable = [
         'titre', 
         'contenu', 
-        'categorie_id', 
+        'category_id', 
         'date_debut', 
         'date_expiration',
     ];
