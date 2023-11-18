@@ -48,7 +48,7 @@ class ArticleController extends Controller
         if (!$article) {
             return response()->json([
                 "message" => "Article not found",
-            ], 404);
+            ], 400);
         }
 
         return response()->json([
@@ -66,7 +66,7 @@ class ArticleController extends Controller
         if (!$article) {
             return response()->json([
                 "message" => "Article not found",
-            ], 404);
+            ], 400);
         }
 
         $data = $request->only(['titre', 'contenu', 'category_id', 'date_debut', 'date_expiration']);
@@ -76,7 +76,7 @@ class ArticleController extends Controller
         
         return response()->json([
             'articles' => $article,
-        ], 204);
+        ], 200);
     }
 
     /**
@@ -89,7 +89,7 @@ class ArticleController extends Controller
         if (!$article) {
             return response()->json([
                 "message" => "Article not found",
-            ], 404);
+            ], 400);
         }
 
         $article->delete();
@@ -123,7 +123,7 @@ class ArticleController extends Controller
         if (!$category) {
             return response()->json([
                 "message" => "Article not found",
-            ], 404);
+            ], 400);
         }
 
 
